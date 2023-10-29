@@ -1,27 +1,39 @@
-import express from "express";
-import passport from 'passport';
-import { forwardAuthenticated } from "../middleware/checkAuth";
+import express from 'express'
+import passport from 'passport'
+import { forwardAuthenticated } from '../middleware/checkAuth'
 
-const router = express.Router();
+const router = express.Router()
 
-router.get("/login", forwardAuthenticated, (req, res) => {
-  res.render("login");
+declare module 'express-session' {
+  export interface SessionData {
+    messages?: string[]
+  }
+}
+
+router.get('/login', forwardAuthenticated, (req, res) => {
+  res.render('login', {
+    messages: req.session.messages || [],
+  })
 })
 
 router.post(
-  "/login",
-  passport.authenticate("local", {
-    successRedirect: "/dashboard",
-    failureRedirect: "/auth/login",
+  '/login',
+  passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/auth/login',
     /* FIX ME: 😭 failureMsg needed when login fails */
+    failureMessage: true,
   })
-);
+)
 
-router.get("/logout", (req, res) => {
+router.get('/logout', (req, res) => {
   req.logout((err) => {
-    if (err) console.log(err);
-  });
-  res.redirect("/auth/login");
-});
+    if (err) console.log(err)
+  })
+  req.session.destroy((err) => {
+    if (err) console.log(err)
+  })
+  res.redirect('/auth/login')
+})
 
-export default router;
+export default router

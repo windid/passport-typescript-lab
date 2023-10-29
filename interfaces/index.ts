@@ -1,6 +1,13 @@
-import { Strategy } from 'passport';
+import { Strategy } from 'passport'
 
 export interface PassportStrategy {
-    name: string;
-    strategy: Strategy;
+  name: string
+  strategy: Strategy
+}
+
+export interface User {
+  id: number
+  name: string
+  email: string
+  password: string
 }
