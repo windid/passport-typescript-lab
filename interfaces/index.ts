@@ -5,9 +5,14 @@ export interface PassportStrategy {
   strategy: Strategy
 }
 
-export interface User {
-  id: number
-  name: string
-  email?: string
-  password?: string
+declare global {
+  namespace Express {
+    interface User {
+      id: number
+      name: string
+      role: 'admin' | 'user'
+      email?: string
+      password?: string
+    }
+  }
 }

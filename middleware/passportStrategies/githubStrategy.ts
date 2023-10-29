@@ -1,8 +1,10 @@
 import { Strategy as GitHubStrategy } from 'passport-github2'
-import { PassportStrategy, User } from '../../interfaces/index'
+import { PassportStrategy } from '../../interfaces/index'
 import { Request } from 'express'
 import { database, userModel } from '../../models/userModel'
-require('dotenv').config()
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const githubStrategy: GitHubStrategy = new GitHubStrategy(
   {
@@ -24,9 +26,10 @@ const githubStrategy: GitHubStrategy = new GitHubStrategy(
       const user = userModel.findById(profile.id)
       return done(null, user)
     } catch (error) {
-      const newUser: User = {
+      const newUser: Express.User = {
         id: profile.id,
         name: profile.displayName,
+        role: 'user',
       }
       database.push(newUser)
       return done(null, newUser)

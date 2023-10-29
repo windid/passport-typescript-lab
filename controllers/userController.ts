@@ -1,4 +1,3 @@
-import { User } from '../interfaces'
 import { userModel } from '../models/userModel'
 
 const getUserByEmailIdAndPassword = (email: string, password: string) => {
@@ -19,7 +18,7 @@ const getUserById = (id: number) => {
   return null
 }
 
-function isUserValid(user: User, password: string) {
+function isUserValid(user: Express.User, password: string) {
   return user.password === password
 }
 

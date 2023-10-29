@@ -27,13 +27,6 @@ const localStrategy = new LocalStrategy(
 /*
 FIX ME (types) 😭
 */
-declare global {
-  namespace Express {
-    interface User {
-      id: number
-    }
-  }
-}
 
 passport.serializeUser(function (user, done) {
   done(null, user.id)
