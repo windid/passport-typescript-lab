@@ -1,12 +1,12 @@
-<h1 class="mt-4">Dashboard</h1>
+<h1 class="mt-4">Administration</h1>
 <p class="lead mb-3">Welcome <%= user.name %>
 </p>
 <p>Current Active Sessions:</p>
 
 <% for (const key in sessions) { %>
-<div>
-    <div>SessionId: <%=key%></div>
-    <div>UserId: <%=sessions[key].passport.user%></div>
-    <div><a href="/admin/revoke/<%=key%>">Revoke</a></div>
+<div style="margin-top: 24px;">
+    <div>SessionID: <%=key%></div>
+    <div>UserID: <%=sessions[key].passport.user%></div>
+    <div><a href="/admin/revoke/<%=key%>">Revoke Session</a></div>
 </div>
 <% } %>

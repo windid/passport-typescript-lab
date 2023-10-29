@@ -24,10 +24,6 @@ const localStrategy = new LocalStrategy(
   }
 )
 
-/*
-FIX ME (types) 😭
-*/
-
 passport.serializeUser(function (user, done) {
   done(null, user.id)
 })

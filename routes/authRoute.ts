@@ -12,7 +12,7 @@ declare module 'express-session' {
 
 router.get('/login', forwardAuthenticated, (req, res) => {
   res.render('login', {
-    messages: req.session.messages || [],
+    message: req.session.messages?.pop(),
   })
 })
 
@@ -21,7 +21,6 @@ router.post(
   passport.authenticate('local', {
     successRedirect: '/dashboard',
     failureRedirect: '/auth/login',
-    /* FIX ME: 😭 failureMsg needed when login fails */
     failureMessage: true,
   })
 )
