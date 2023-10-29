@@ -1,7 +1,7 @@
 import passport from 'passport'
 import { Strategy as LocalStrategy } from 'passport-local'
 import { getUserByEmailIdAndPassword, getUserById } from '../../controllers/userController'
-import { PassportStrategy, User } from '../../interfaces/index'
+import { PassportStrategy } from '../../interfaces/index'
 
 const localStrategy = new LocalStrategy(
   {

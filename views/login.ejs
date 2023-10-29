@@ -5,7 +5,7 @@
         <img src="/secure-icon.png" alt="icon" width="20%" />
       </h1>
       <p style="color: #c00">
-        <%= messages[0] %>
+        <%= messages[messages.length - 1] %>
       </p>
 
       <h2>Login</h2>
@@ -31,6 +31,8 @@
           />
         </div>
         <button type="submit" class="btn btn-primary btn-block">Login</button>
+        <div>OR</div>
+        <a href="/auth/github" class="btn btn-secondary btn-block">Login with Github</a>
       </form>
       <p class="mt-4">New User? <a href="/auth/register">Register</a></p>
       <p>Forgot Password? <a href="/auth/forgot">Reset</a></p>
